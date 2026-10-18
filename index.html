@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html class="h-full" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Jemi — Focus &amp; Clarity</title>
+  
+  <!-- Modern Typography: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Material Symbols Outlined -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+
+  <style>
+    @layer base {
+      html, body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      }
+      body {
+        overscroll-behavior: none;
+      }
+    }
+    
+    /* Subtle custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(120, 117, 132, 0.2);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(120, 117, 132, 0.4);
+    }
+
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .material-symbols-outlined.fill-1 {
+      font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-task-in {
+      animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+  </style>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#5c4bbe",
+            "primary-container": "#7565d9",
+            "on-primary": "#ffffff",
+            "on-primary-container": "#ffffff",
+            "primary-fixed": "#e5deff",
+            "primary-fixed-dim": "#c8bfff",
+            "on-primary-fixed": "#190064",
+            "on-primary-fixed-variant": "#4531a6",
+
+            "secondary": "#006c49",
+            "secondary-container": "#6cf8bb",
+            "on-secondary": "#ffffff",
+            "on-secondary-container": "#00714d",
+            "secondary-fixed": "#6ffbbe",
+            "secondary-fixed-dim": "#4edea3",
+            "on-secondary-fixed": "#002113",
+            "on-secondary-fixed-variant": "#005236",
+
+            "tertiary": "#825400",
+            "tertiary-container": "#a36a00",
+            "on-tertiary": "#ffffff",
+            "on-tertiary-container": "#ffffff",
+            "tertiary-fixed": "#ffddb5",
+            "tertiary-fixed-dim": "#ffb956",
+            "on-tertiary-fixed": "#2a1800",
+            "on-tertiary-fixed-variant": "#633f00",
+
+            "surface": "#fcf8ff",
+            "surface-dim": "#dad8ef",
+            "surface-bright": "#fcf8ff",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f5f2ff",
+            "surface-container": "#efecff",
+            "surface-container-high": "#e8e6fd",
+            "surface-container-highest": "#e3e0f7",
+            "surface-variant": "#e3e0f7",
+            "surface-tint": "#5d4cbf",
+
+            "on-surface": "#1a1a2a",
+            "on-surface-variant": "#474553",
+            "inverse-surface": "#2f2f40",
+            "inverse-on-surface": "#f2efff",
+
+            "outline": "#787584",
+            "outline-variant": "#c9c4d5",
+
+            "error": "#ba1a1a",
+            "error-container": "#ffdad6",
+            "on-error": "#ffffff",
+            "on-error-container": "#93000a",
+
+            "background": "#fcf8ff",
+            "on-background": "#1a1a2a"
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            sm: "0.25rem",
+            md: "0.5rem",
+            lg: "0.75rem",
+            xl: "1rem",
+            "2xl": "1.25rem",
+            "3xl": "1.75rem",
+            full: "9999px"
+          },
+          boxShadow: {
+            xs: '0 1px 2px rgba(0, 0, 0, 0.04)',
+            sm: '0 2px 8px -2px rgba(92, 75, 190, 0.06), 0 1px 3px rgba(0, 0, 0, 0.03)',
+            card: '0 4px 20px -2px rgba(92, 75, 190, 0.05), 0 2px 6px rgba(0, 0, 0, 0.02)'
+          }
+        }
+      }
+    };
+  </script>
+</head>
+
+<body class="bg-background font-sans text-on-surface antialiased min-h-full flex flex-col selection:bg-primary-fixed selection:text-primary">
+
+  <!-- Top Navigation Header -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-xl border-b border-outline-variant/30 transition-all">
+    <div class="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between gap-4">
+      
+      <!-- Brand & Identity -->
+      <div class="flex items-center gap-3">
+        <a href="#" class="flex items-center gap-3 group">
+          <!-- Jemi Purple Rounded Checkmark Icon (Exact match to screen.png) -->
+          <div class="w-8 h-8 rounded-xl bg-primary flex items-center justify-center text-white shadow-xs transition-transform group-hover:scale-105">
+            <span class="material-symbols-outlined text-[19px] font-bold">check</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-xl font-bold tracking-tight text-on-surface leading-none">Jemi</span>
+            <span class="hidden sm:inline-block text-[11px] font-bold uppercase tracking-wider text-primary bg-surface-container px-2.5 py-0.5 rounded-full">
+              FOCUS &amp; CLARITY
+            </span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Center Navigation Tabs -->
+      <nav class="hidden md:flex items-center p-1 bg-surface-container-low/80 rounded-2xl border border-outline-variant/20 shadow-xs">
+        <button id="nav-today" onclick="switchMainTab('today')" class="px-4 py-1.5 rounded-xl text-sm font-semibold transition-all bg-surface-container-high text-on-surface shadow-xs">
+          Today
+        </button>
+        <button id="nav-upcoming" onclick="switchMainTab('upcoming')" class="px-4 py-1.5 rounded-xl text-sm font-medium transition-all text-on-surface-variant hover:text-on-surface hover:bg-surface-container">
+          Upcoming
+        </button>
+        <button id="nav-focus" onclick="switchMainTab('focus')" class="px-4 py-1.5 rounded-xl text-sm font-medium transition-all text-on-surface-variant hover:text-on-surface hover:bg-surface-container">
+          Focus
+        </button>
+      </nav>
+
+      <!-- Right Header Actions -->
+      <div class="flex items-center gap-3">
+        <!-- Date Badge -->
+        <div class="hidden sm:flex items-center gap-2 bg-surface-container-low px-3.5 py-1.5 rounded-full text-on-surface-variant border border-outline-variant/25 text-xs font-semibold">
+          <span class="material-symbols-outlined text-[16px] text-primary">calendar_today</span>
+          <span id="current-date-display" class="text-on-surface">Tuesday, Oct 24</span>
+        </div>
+
+        <!-- Notifications Button -->
+        <div class="relative">
+          <button id="btn-notifications" onclick="toggleNotificationsModal()" aria-label="Notifications" class="w-9 h-9 rounded-full flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors relative">
+            <span class="material-symbols-outlined text-[20px]">notifications</span>
+            <span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-primary ring-2 ring-surface"></span>
+          </button>
+          
+          <!-- Notifications Dropdown Popover -->
+          <div id="notifications-popover" class="hidden absolute right-0 mt-2 w-72 bg-surface-container-lowest rounded-2xl shadow-card border border-outline-variant/30 p-4 z-50">
+            <div class="flex items-center justify-between pb-2 mb-2 border-b border-outline-variant/20">
+              <span class="text-xs font-bold text-on-surface">Notifications</span>
+              <span class="text-[10px] text-primary font-semibold bg-surface-container px-2 py-0.5 rounded-full">1 New</span>
+            </div>
+            <div class="space-y-2">
+              <div class="flex items-start gap-2.5 p-2 rounded-xl bg-surface-container-low/60 text-xs">
+                <span class="material-symbols-outlined text-primary text-[18px] mt-0.5">spa</span>
+                <div>
+                  <p class="font-medium text-on-surface">Mindful break reminder</p>
+                  <p class="text-[11px] text-on-surface-variant">You've completed 5 tasks today. Great progress!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Settings Button -->
+        <button id="btn-settings" onclick="toggleSettingsModal()" aria-label="Settings" class="w-9 h-9 rounded-full flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors">
+          <span class="material-symbols-outlined text-[20px]">settings</span>
+        </button>
+
+        <!-- User Profile Avatar -->
+        <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-xs cursor-pointer hover:opacity-90 transition-opacity" title="Elena's Profile">
+          <span class="material-symbols-outlined text-on-primary text-[18px]">person</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="w-full pt-16 flex-1 bg-background">
+    
+    <!-- ================= TODAY VIEW ================= -->
+    <div id="view-today" class="max-w-4xl mx-auto px-6 py-8">
+      <div class="flex flex-col w-full">
+        
+        <!-- Top Greeting & Mindfulness Progress Strip -->
+        <section class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8">
+          <div class="space-y-1">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container text-primary text-xs font-semibold mb-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+              <span>Mindful Flow State</span>
+            </div>
+            <h1 class="text-3xl sm:text-4xl font-bold text-on-surface tracking-tight" id="greeting-title">Good morning, Elena</h1>
+            <p class="text-sm sm:text-base text-on-surface-variant" id="greeting-subtitle">
+              You have <span id="dynamic-pending-count" class="font-semibold text-on-surface">3 tasks</span> left for today. Take it one step at a time.
+            </p>
+          </div>
+
+          <!-- Calm Milestone Indicator Widget (Exact match to screen.png) -->
+          <div class="flex items-center gap-4 bg-surface-container-lowest p-3.5 pr-6 rounded-2xl shadow-sm border border-outline-variant/15 shrink-0">
+            <div class="relative w-12 h-12 flex items-center justify-center">
+              <svg class="w-12 h-12 transform -rotate-90" viewBox="0 0 36 36">
+                <path class="text-surface-container" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3"></path>
+                <path id="progressCirclePath" class="text-primary-container transition-all duration-700 ease-out" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="63, 100" stroke-linecap="round" stroke-width="3"></path>
+              </svg>
+              <span id="progress-percent" class="absolute text-xs text-primary font-bold">63%</span>
+            </div>
+            <div class="flex flex-col">
+              <span id="milestone-ratio" class="text-sm font-semibold text-on-surface">5 of 8 completed</span>
+              <span id="milestone-status" class="text-xs text-on-surface-variant">Optimal daily pacing</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Metric Summary Cards (3 cards matching screen.png) -->
+        <section class="grid grid-cols-1 sm:grid-cols-3 gap-4 pb-8">
+          
+          <!-- Card 1: Total Tasks -->
+          <div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm border border-outline-variant/15 flex items-center justify-between hover:-translate-y-0.5 transition-transform duration-200">
+            <div class="space-y-1">
+              <span class="text-xs font-semibold text-on-surface-variant block">Total Tasks</span>
+              <span class="text-3xl font-bold text-on-surface leading-none" id="metric-total">8</span>
+            </div>
+            <div class="w-12 h-12 rounded-2xl bg-surface-container flex items-center justify-center text-primary">
+              <span class="material-symbols-outlined text-[24px]">folder_open</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Pending Tasks -->
+          <div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm border border-outline-variant/15 flex items-center justify-between hover:-translate-y-0.5 transition-transform duration-200">
+            <div class="space-y-1">
+              <span class="text-xs font-semibold text-on-surface-variant block">Pending Tasks</span>
+              <span class="text-3xl font-bold leading-none text-tertiary" id="metric-pending">3</span>
+            </div>
+            <div class="w-12 h-12 rounded-2xl bg-tertiary-fixed/40 flex items-center justify-center text-tertiary">
+              <span class="material-symbols-outlined text-[24px]">schedule</span>
+            </div>
+          </div>
+
+          <!-- Card 3: Completed Tasks -->
+          <div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm border border-outline-variant/15 flex items-center justify-between hover:-translate-y-0.5 transition-transform duration-200">
+            <div class="space-y-1">
+              <span class="text-xs font-semibold text-on-surface-variant block">Completed</span>
+              <span class="text-3xl font-bold leading-none text-secondary" id="metric-completed">5</span>
+            </div>
+            <div class="w-12 h-12 rounded-2xl bg-secondary-fixed/50 flex items-center justify-center text-secondary">
+              <span class="material-symbols-outlined text-[24px]">check_circle</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Add Task Component (Exact match to screen.png) -->
+        <section class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm border border-outline-variant/15 mb-8 space-y-4">
+          <form class="flex flex-col md:flex-row items-center gap-3" id="quick-add-form" onsubmit="event.preventDefault(); window.addNewTask();">
+            <div class="relative flex-1 w-full flex items-center">
+              <span class="material-symbols-outlined absolute left-4 text-on-surface-variant text-[20px] pointer-events-none">add_circle</span>
+              <input 
+                id="task-title-input" 
+                class="w-full bg-surface-container-low pl-12 pr-4 py-3.5 rounded-xl text-sm font-normal text-on-surface placeholder:text-on-surface-variant/80 focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary/30 outline-none transition-all" 
+                placeholder="What do you need to get done?" 
+                type="text" 
+                autocomplete="off"
+              >
+            </div>
+            <div class="flex items-center gap-2 w-full md:w-auto justify-end">
+              <button 
+                class="w-full md:w-auto bg-primary-container hover:bg-primary active:scale-[0.98] text-on-primary text-sm font-semibold px-6 py-3.5 rounded-xl flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer" 
+                type="submit"
+              >
+                <span class="material-symbols-outlined text-[18px]">add</span>
+                <span>Add Task</span>
+              </button>
+            </div>
+          </form>
+
+          <!-- Quick Category Suggestion Badges -->
+          <div class="flex items-center gap-2 pt-1 overflow-x-auto pb-1 no-scrollbar">
+            <span class="text-xs text-on-surface-variant mr-1 font-medium whitespace-nowrap">Quick label:</span>
+            <button class="category-chip px-3.5 py-1 rounded-full text-xs font-semibold bg-surface-container text-primary transition-colors cursor-pointer" onclick="window.selectTag('Study')" type="button">Study</button>
+            <button class="category-chip px-3.5 py-1 rounded-full text-xs font-medium bg-surface-container-low text-on-surface-variant hover:bg-surface-container transition-colors cursor-pointer" onclick="window.selectTag('Assignment')" type="button">Assignment</button>
+            <button class="category-chip px-3.5 py-1 rounded-full text-xs font-medium bg-surface-container-low text-on-surface-variant hover:bg-surface-container transition-colors cursor-pointer" onclick="window.selectTag('Personal')" type="button">Personal</button>
+            <button class="category-chip px-3.5 py-1 rounded-full text-xs font-medium bg-surface-container-low text-on-surface-variant hover:bg-surface-container transition-colors cursor-pointer" onclick="window.selectTag('Errands')" type="button">Errands</button>
+            <button class="category-chip px-3.5 py-1 rounded-full text-xs font-medium bg-surface-container-low text-on-surface-variant hover:bg-surface-container transition-colors cursor-pointer" onclick="window.selectTag('Wellness')" type="button">Wellness</button>
+          </div>
+        </section>
+
+        <!-- My Tasks Container -->
+        <section class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-outline-variant/15 flex flex-col gap-4">
+          
+          <!-- Header with Tabs and Actions -->
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-outline-variant/15">
+            <div class="flex items-center gap-3">
+              <h2 class="text-xl font-bold text-on-surface">My Tasks</h2>
+              <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-surface-container text-primary" id="items-badge">8 items</span>
+            </div>
+
+            <!-- Filter Tabs (Exact match to screen.png) -->
+            <div class="flex items-center p-1 bg-surface-container-low rounded-xl gap-1 self-start sm:self-auto border border-outline-variant/20">
+              <button id="filter-all" onclick="window.filterTasks('all')" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-surface-container-lowest text-primary shadow-xs transition-all cursor-pointer">
+                All (8)
+              </button>
+              <button id="filter-pending" onclick="window.filterTasks('pending')" class="px-3.5 py-1.5 rounded-lg text-xs font-medium text-on-surface-variant hover:text-on-surface transition-all cursor-pointer">
+                Pending (3)
+              </button>
+              <button id="filter-completed" onclick="window.filterTasks('completed')" class="px-3.5 py-1.5 rounded-lg text-xs font-medium text-on-surface-variant hover:text-on-surface transition-all cursor-pointer">
+                Completed (5)
+              </button>
+            </div>
+          </div>
+
+          <!-- Task List Dynamic Container -->
+          <div class="flex flex-col gap-1.5 min-h-[160px]" id="tasks-container">
+            <!-- Dynamic task rows rendered here via JS -->
+          </div>
+
+          <!-- Empty State (Hidden when tasks are present) -->
+          <div id="tasks-empty-state" class="hidden flex flex-col items-center justify-center py-12 text-center text-on-surface-variant">
+            <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-primary mb-3">
+              <span class="material-symbols-outlined text-[24px]">task_alt</span>
+            </div>
+            <p class="text-sm font-semibold text-on-surface">No tasks found</p>
+            <p class="text-xs text-on-surface-variant mt-1">There are no tasks matching your selected filter.</p>
+          </div>
+
+        </section>
+      </div>
+    </div>
+
+    <!-- ================= UPCOMING AGENDA VIEW ================= -->
+    <div id="view-upcoming" class="hidden max-w-4xl mx-auto px-6 py-8">
+      <div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-outline-variant/15 space-y-6">
+        <div class="flex items-center justify-between pb-4 border-b border-outline-variant/20">
+          <div>
+            <h2 class="text-xl font-bold text-on-surface">Upcoming Agenda</h2>
+            <p class="text-xs text-on-surface-variant mt-0.5">Plan and stay ahead with calm, scheduled pacing.</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-surface-container text-primary">This Week</span>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <!-- Day group: Tomorrow -->
+          <div class="space-y-2">
+            <div class="flex items-center gap-2 text-xs font-bold text-primary uppercase tracking-wider">
+              <span class="material-symbols-outlined text-[16px]">calendar_today</span>
+              <span>Wednesday, Oct 25 (Tomorrow)</span>
+            </div>
+            <div class="p-4 rounded-xl bg-surface-container-low/50 border border-outline-variant/20 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <span class="w-2.5 h-2.5 rounded-full bg-tertiary"></span>
+                <span class="text-sm font-medium text-on-surface">Draft outline for Economics research paper</span>
+              </div>
+              <span class="text-xs text-error font-semibold bg-error-container/60 px-2.5 py-0.5 rounded-full">High Priority</span>
+            </div>
+          </div>
+
+          <!-- Day group: Thursday -->
+          <div class="space-y-2 pt-2">
+            <div class="flex items-center gap-2 text-xs font-bold text-on-surface-variant uppercase tracking-wider">
+              <span class="material-symbols-outlined text-[16px]">event</span>
+              <span>Thursday, Oct 26</span>
+            </div>
+            <div class="p-4 rounded-xl bg-surface-container-low/50 border border-outline-variant/20 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+                <span class="text-sm font-medium text-on-surface">Schedule weekly dentist check-up appointment</span>
+              </div>
+              <span class="text-xs text-secondary font-medium bg-secondary-fixed/50 px-2.5 py-0.5 rounded-full">Personal</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= FOCUS TIMER VIEW ================= -->
+    <div id="view-focus" class="hidden max-w-4xl mx-auto px-6 py-8">
+      <div class="bg-surface-container-lowest p-8 rounded-2xl shadow-sm border border-outline-variant/15 flex flex-col items-center justify-center text-center space-y-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container text-primary text-xs font-semibold">
+          <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+          <span>Deep Focus Session</span>
+        </div>
+        
+        <div>
+          <h2 class="text-2xl font-bold text-on-surface">Mindful Pomodoro</h2>
+          <p class="text-sm text-on-surface-variant mt-1">Immerse into single-task flow state without distractions.</p>
+        </div>
+
+        <!-- Timer Circular Display -->
+        <div class="relative w-56 h-56 flex items-center justify-center my-4">
+          <svg class="w-56 h-56 transform -rotate-90" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="45" stroke="currentColor" stroke-width="5" class="text-surface-container" fill="none"></circle>
+            <circle id="focusTimerCircle" cx="50" cy="50" r="45" stroke="currentColor" stroke-width="5" class="text-primary-container transition-all duration-1000 ease-linear" fill="none" stroke-dasharray="283" stroke-dashoffset="0" stroke-linecap="round"></circle>
+          </svg>
+          <div class="absolute flex flex-col items-center">
+            <span id="focusTimeDisplay" class="text-5xl font-extrabold text-on-surface tracking-tight">25:00</span>
+            <span class="text-xs font-medium text-on-surface-variant mt-1">Focus Time</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <button id="focusToggleBtn" onclick="toggleFocusTimer()" class="px-8 py-3 rounded-xl bg-primary hover:bg-primary-container text-on-primary font-semibold text-sm shadow-sm transition-all flex items-center gap-2">
+            <span class="material-symbols-outlined text-[20px]" id="focusToggleIcon">play_arrow</span>
+            <span id="focusToggleText">Start Session</span>
+          </button>
+          <button onclick="resetFocusTimer()" class="px-4 py-3 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-medium text-sm transition-all" title="Reset Timer">
+            <span class="material-symbols-outlined text-[20px]">refresh</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Settings Modal -->
+  <div id="settings-modal" class="hidden fixed inset-0 z-50 bg-on-surface/40 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-surface-container-lowest max-w-md w-full rounded-2xl shadow-card border border-outline-variant/30 p-6 space-y-5 animate-task-in">
+      <div class="flex items-center justify-between pb-3 border-b border-outline-variant/20">
+        <h3 class="text-lg font-bold text-on-surface flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-[20px]">settings</span>
+          Preferences &amp; Data
+        </h3>
+        <button onclick="toggleSettingsModal()" class="w-8 h-8 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+      </div>
+
+      <div class="space-y-4 text-sm">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="font-semibold text-on-surface">Sample Design Data</p>
+            <p class="text-xs text-on-surface-variant">Restore the original Google Stitch design tasks</p>
+          </div>
+          <button onclick="resetToOriginalDemoData()" class="px-3.5 py-1.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-primary font-semibold text-xs transition-colors">
+            Reset Demo
+          </button>
+        </div>
+
+        <div class="flex items-center justify-between pt-2 border-t border-outline-variant/15">
+          <div>
+            <p class="font-semibold text-on-surface">Clear All Tasks</p>
+            <p class="text-xs text-on-surface-variant">Wipe your task list completely</p>
+          </div>
+          <button onclick="clearAllTasks()" class="px-3.5 py-1.5 rounded-xl bg-error-container hover:bg-error/20 text-error font-semibold text-xs transition-colors">
+            Clear All
+          </button>
+        </div>
+      </div>
+
+      <div class="pt-2 text-right">
+        <button onclick="toggleSettingsModal()" class="px-5 py-2 rounded-xl bg-primary text-white text-xs font-semibold">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="w-full bg-surface-container-low border-t border-outline-variant/30 py-5 mt-auto">
+    <div class="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-on-surface-variant">
+      <div class="flex items-center gap-2">
+        <span class="font-semibold text-on-surface">Jemi</span>
+        <span>•</span>
+        <span>Serene Focus &amp; Minimalist Productivity</span>
+      </div>
+      <div class="flex items-center gap-4 text-xs">
+        <span>Designed with Google Stitch</span>
+        <span>•</span>
+        <span class="text-primary font-medium">Ready for Backend Sync</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Logic & State Management -->
+  <script>
+    (function() {
+      // Default Initial Tasks matching Google Stitch design screen.png exactly
+      const DEFAULT_TASKS = [
+        {
+          id: 1,
+          title: "Review Chapter 4 notes for Cognitive Psychology exam",
+          status: "pending",
+          category: "Study",
+          timeDisplay: "Today, 3:00 PM",
+          timeIcon: "alarm",
+          priority: "Medium",
+          priorityColor: "text-error"
+        },
+        {
+          id: 2,
+          title: "Draft outline for Economics research paper",
+          status: "pending",
+          category: "Assignment",
+          timeDisplay: "Tomorrow",
+          timeIcon: "calendar_today",
+          priority: "High Priority",
+          priorityColor: "text-error"
+        },
+        {
+          id: 3,
+          title: "Schedule weekly dentist check-up appointment",
+          status: "pending",
+          category: "Personal",
+          timeDisplay: "Oct 26",
+          timeIcon: "event",
+          priority: "",
+          priorityColor: ""
+        },
+        {
+          id: 4,
+          title: "Submit problem set #3 to course portal",
+          status: "completed",
+          category: "Homework",
+          timeDisplay: "Done at 10:14 AM",
+          timeIcon: "check_circle",
+          priority: "",
+          priorityColor: ""
+        },
+        {
+          id: 5,
+          title: "Buy groceries: almond milk, oats, fresh fruit",
+          status: "completed",
+          category: "Errands",
+          timeDisplay: "Done at 8:30 AM",
+          timeIcon: "check_circle",
+          priority: "",
+          priorityColor: ""
+        },
+        {
+          id: 6,
+          title: "Morning 20-minute mindful yoga session",
+          status: "completed",
+          category: "Wellness",
+          timeDisplay: "Done at 7:15 AM",
+          timeIcon: "check_circle",
+          priority: "",
+          priorityColor: ""
+        },
+        {
+          id: 7,
+          title: "Read 15 pages of philosophy research paper",
+          status: "completed",
+          category: "Study",
+          timeDisplay: "Done at 6:45 AM",
+          timeIcon: "check_circle",
+          priority: "",
+          priorityColor: ""
+        },
+        {
+          id: 8,
+          title: "Water indoor desk plants & open blinds",
+          status: "completed",
+          category: "Wellness",
+          timeDisplay: "Done at 6:15 AM",
+          timeIcon: "check_circle",
+          priority: "",
+          priorityColor: ""
+        }
+      ];
+
+      // State
+      let tasks = [];
+      let activeFilter = 'all';
+      let selectedTag = 'Study';
+
+      // Load tasks from LocalStorage or initialize with defaults
+      function loadTasks() {
+        const stored = localStorage.getItem('jemi_tasks');
+        if (stored) {
+          try {
+            tasks = JSON.parse(stored);
+          } catch(e) {
+            tasks = [...DEFAULT_TASKS];
+          }
+        } else {
+          tasks = [...DEFAULT_TASKS];
+          saveTasks();
+        }
+      }
+
+      function saveTasks() {
+        localStorage.setItem('jemi_tasks', JSON.stringify(tasks));
+      }
+
+      // Quick category badge styles
+      function getCategoryBadgeClass(category) {
+        switch(category) {
+          case 'Study':
+            return 'bg-primary-fixed text-on-primary-fixed-variant';
+          case 'Assignment':
+            return 'bg-surface-container text-primary';
+          case 'Personal':
+            return 'bg-secondary-fixed/40 text-on-secondary-fixed-variant';
+          case 'Homework':
+            return 'bg-surface-container-high text-on-surface-variant';
+          case 'Errands':
+            return 'bg-surface-container-high text-on-surface-variant';
+          case 'Wellness':
+            return 'bg-surface-container-high text-on-surface-variant';
+          default:
+            return 'bg-surface-container text-primary';
+        }
+      }
+
+      // Render Task List
+      function renderTasks() {
+        const container = document.getElementById('tasks-container');
+        const emptyState = document.getElementById('tasks-empty-state');
+        if (!container) return;
+
+        const filtered = tasks.filter(t => {
+          if (activeFilter === 'all') return true;
+          return t.status === activeFilter;
+        });
+
+        if (filtered.length === 0) {
+          container.innerHTML = '';
+          if (emptyState) emptyState.classList.remove('hidden');
+        } else {
+          if (emptyState) emptyState.classList.add('hidden');
+          
+          container.innerHTML = filtered.map(task => {
+            const isCompleted = task.status === 'completed';
+            const catClass = getCategoryBadgeClass(task.category);
+
+            return `
+              <div class="task-row group flex items-center justify-between py-3.5 px-4 rounded-xl hover:bg-surface-container-low transition-all duration-150 ${isCompleted ? 'opacity-60' : ''}" data-id="${task.id}" data-status="${task.status}">
+                <div class="flex items-center gap-3.5 min-w-0 pr-4">
+                  <!-- Checkbox -->
+                  <button 
+                    type="button" 
+                    onclick="window.toggleTask(${task.id})" 
+                    class="w-5 h-5 rounded-md flex items-center justify-center transition-all shadow-xs shrink-0 cursor-pointer ${
+                      isCompleted 
+                        ? 'bg-primary-container text-on-primary ring-0' 
+                        : 'bg-surface-container-lowest text-primary-container border border-outline-variant/50 hover:bg-primary-fixed/50'
+                    }"
+                    aria-label="${isCompleted ? 'Mark task as pending' : 'Mark task as complete'}"
+                  >
+                    <span class="material-symbols-outlined text-[16px] ${isCompleted ? '' : 'opacity-0 group-hover:opacity-40'} font-bold">check</span>
+                  </button>
+
+                  <!-- Task Info -->
+                  <div class="flex flex-col min-w-0">
+                    <span class="text-sm font-medium truncate ${isCompleted ? 'line-through text-on-surface-variant' : 'text-on-surface'}">
+                      ${escapeHtml(task.title)}
+                    </span>
+                    <div class="flex items-center gap-2 mt-0.5">
+                      <span class="text-xs ${isCompleted ? 'text-secondary' : 'text-on-surface-variant'} flex items-center gap-1 font-medium">
+                        <span class="material-symbols-outlined text-[13px]">${task.timeIcon || 'alarm'}</span>
+                        ${escapeHtml(task.timeDisplay || 'Today')}
+                      </span>
+                      ${task.priority ? `
+                        <span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+                        <span class="text-xs font-semibold ${task.priorityColor || 'text-error'}">${escapeHtml(task.priority)}</span>
+                      ` : ''}
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Category Pill & Delete Action -->
+                <div class="flex items-center gap-2 shrink-0">
+                  <span class="text-xs px-2.5 py-0.5 rounded-full font-medium ${catClass}">
+                    ${escapeHtml(task.category)}
+                  </span>
+                  <button 
+                    type="button" 
+                    onclick="window.deleteTask(${task.id})" 
+                    class="w-8 h-8 rounded-lg flex items-center justify-center text-on-surface-variant opacity-0 group-hover:opacity-100 hover:bg-surface-container-highest hover:text-error transition-all cursor-pointer" 
+                    aria-label="Delete task"
+                  >
+                    <span class="material-symbols-outlined text-[18px]">delete</span>
+                  </button>
+                </div>
+              </div>
+            `;
+          }).join('');
+        }
+
+        updateDashboardMetrics();
+      }
+
+      function escapeHtml(str) {
+        if (!str) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+
+      // Update Top Metrics, Ring and Tab Counters
+      function updateDashboardMetrics() {
+        const total = tasks.length;
+        const pending = tasks.filter(t => t.status === 'pending').length;
+        const completed = total - pending;
+        const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
+
+        // Metric Cards
+        const elTotal = document.getElementById('metric-total');
+        const elPending = document.getElementById('metric-pending');
+        const elCompleted = document.getElementById('metric-completed');
+        const elBadge = document.getElementById('items-badge');
+
+        if (elTotal) elTotal.textContent = total;
+        if (elPending) elPending.textContent = pending;
+        if (elCompleted) elCompleted.textContent = completed;
+        if (elBadge) elBadge.textContent = `${total} items`;
+
+        // Milestone Widget
+        const circle = document.getElementById('progressCirclePath');
+        const percentText = document.getElementById('progress-percent');
+        const ratioText = document.getElementById('milestone-ratio');
+        const statusText = document.getElementById('milestone-status');
+
+        if (circle) circle.setAttribute('stroke-dasharray', `${percent}, 100`);
+        if (percentText) percentText.textContent = `${percent}%`;
+        if (ratioText) ratioText.textContent = `${completed} of ${total} completed`;
+
+        if (statusText) {
+          if (percent === 100) {
+            statusText.textContent = 'All tasks finished! Take a mindful rest.';
+          } else if (percent >= 50) {
+            statusText.textContent = 'Optimal daily pacing';
+          } else {
+            statusText.textContent = 'Calm, steady beginning';
+          }
+        }
+
+        // Greeting count
+        const dynCount = document.getElementById('dynamic-pending-count');
+        if (dynCount) {
+          dynCount.textContent = `${pending} ${pending === 1 ? 'task' : 'tasks'}`;
+        }
+
+        // Filter tab counts
+        const tabAll = document.getElementById('filter-all');
+        const tabPending = document.getElementById('filter-pending');
+        const tabCompleted = document.getElementById('filter-completed');
+
+        if (tabAll) tabAll.textContent = `All (${total})`;
+        if (tabPending) tabPending.textContent = `Pending (${pending})`;
+        if (tabCompleted) tabCompleted.textContent = `Completed (${completed})`;
+      }
+
+      // Global window methods
+      window.selectTag = function(tag) {
+        selectedTag = tag;
+        document.querySelectorAll('.category-chip').forEach(btn => {
+          if (btn.textContent.trim() === tag) {
+            btn.className = "category-chip px-3.5 py-1 rounded-full text-xs font-semibold bg-surface-container text-primary transition-colors cursor-pointer";
+          } else {
+            btn.className = "category-chip px-3.5 py-1 rounded-full text-xs font-medium bg-surface-container-low text-on-surface-variant hover:bg-surface-container transition-colors cursor-pointer";
+          }
+        });
+      };
+
+      window.filterTasks = function(filter) {
+        activeFilter = filter;
+        const tabs = {
+          'all': document.getElementById('filter-all'),
+          'pending': document.getElementById('filter-pending'),
+          'completed': document.getElementById('filter-completed')
+        };
+
+        Object.keys(tabs).forEach(k => {
+          if (tabs[k]) {
+            if (k === filter) {
+              tabs[k].className = 'px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-surface-container-lowest text-primary shadow-xs transition-all cursor-pointer';
+            } else {
+              tabs[k].className = 'px-3.5 py-1.5 rounded-lg text-xs font-medium text-on-surface-variant hover:text-on-surface transition-all cursor-pointer';
+            }
+          }
+        });
+
+        renderTasks();
+      };
+
+      window.toggleTask = function(id) {
+        const task = tasks.find(t => t.id === id);
+        if (!task) return;
+
+        if (task.status === 'pending') {
+          task.status = 'completed';
+          const now = new Date();
+          const hours = now.getHours();
+          const minutes = String(now.getMinutes()).padStart(2, '0');
+          const ampm = hours >= 12 ? 'PM' : 'AM';
+          const formattedHours = hours % 12 || 12;
+          task.timeDisplay = `Done at ${formattedHours}:${minutes} ${ampm}`;
+          task.timeIcon = 'check_circle';
+        } else {
+          task.status = 'pending';
+          task.timeDisplay = 'Today';
+          task.timeIcon = 'alarm';
+        }
+
+        saveTasks();
+        renderTasks();
+      };
+
+      window.deleteTask = function(id) {
+        tasks = tasks.filter(t => t.id !== id);
+        saveTasks();
+        renderTasks();
+      };
+
+      window.addNewTask = function() {
+        const input = document.getElementById('task-title-input');
+        if (!input) return;
+        const title = input.value.trim();
+        if (!title) return;
+
+        const newTask = {
+          id: Date.now(),
+          title: title,
+          status: 'pending',
+          category: selectedTag,
+          timeDisplay: 'Today',
+          timeIcon: 'alarm',
+          priority: '',
+          priorityColor: ''
+        };
+
+        tasks.unshift(newTask);
+        input.value = '';
+        saveTasks();
+        renderTasks();
+      };
+
+      // Navigation tab switching
+      window.switchMainTab = function(tab) {
+        const tabs = ['today', 'upcoming', 'focus'];
+        tabs.forEach(t => {
+          const viewEl = document.getElementById(`view-${t}`);
+          const navBtn = document.getElementById(`nav-${t}`);
+          if (t === tab) {
+            if (viewEl) viewEl.classList.remove('hidden');
+            if (navBtn) {
+              navBtn.className = 'px-4 py-1.5 rounded-xl text-sm font-semibold transition-all bg-surface-container-high text-on-surface shadow-xs';
+            }
+          } else {
+            if (viewEl) viewEl.classList.add('hidden');
+            if (navBtn) {
+              navBtn.className = 'px-4 py-1.5 rounded-xl text-sm font-medium transition-all text-on-surface-variant hover:text-on-surface hover:bg-surface-container';
+            }
+          }
+        });
+      };
+
+      // Modals
+      window.toggleNotificationsModal = function() {
+        const pop = document.getElementById('notifications-popover');
+        if (pop) pop.classList.toggle('hidden');
+      };
+
+      window.toggleSettingsModal = function() {
+        const modal = document.getElementById('settings-modal');
+        if (modal) modal.classList.toggle('hidden');
+      };
+
+      window.resetToOriginalDemoData = function() {
+        tasks = JSON.parse(JSON.stringify(DEFAULT_TASKS));
+        saveTasks();
+        renderTasks();
+        toggleSettingsModal();
+      };
+
+      window.clearAllTasks = function() {
+        tasks = [];
+        saveTasks();
+        renderTasks();
+        toggleSettingsModal();
+      };
+
+      // Focus Timer Logic
+      let focusInterval = null;
+      let focusSeconds = 25 * 60;
+      let isFocusRunning = false;
+      const initialFocusSeconds = 25 * 60;
+
+      window.toggleFocusTimer = function() {
+        const btnText = document.getElementById('focusToggleText');
+        const btnIcon = document.getElementById('focusToggleIcon');
+
+        if (isFocusRunning) {
+          clearInterval(focusInterval);
+          isFocusRunning = false;
+          if (btnText) btnText.textContent = 'Resume Session';
+          if (btnIcon) btnIcon.textContent = 'play_arrow';
+        } else {
+          isFocusRunning = true;
+          if (btnText) btnText.textContent = 'Pause Session';
+          if (btnIcon) btnIcon.textContent = 'pause';
+
+          focusInterval = setInterval(() => {
+            if (focusSeconds > 0) {
+              focusSeconds--;
+              updateFocusTimerDisplay();
+            } else {
+              clearInterval(focusInterval);
+              isFocusRunning = false;
+              if (btnText) btnText.textContent = 'Start Session';
+              if (btnIcon) btnIcon.textContent = 'play_arrow';
+              alert('Mindful Focus Session Completed! Take a deep breath.');
+            }
+          }, 1000);
+        }
+      };
+
+      window.resetFocusTimer = function() {
+        clearInterval(focusInterval);
+        isFocusRunning = false;
+        focusSeconds = initialFocusSeconds;
+        const btnText = document.getElementById('focusToggleText');
+        const btnIcon = document.getElementById('focusToggleIcon');
+        if (btnText) btnText.textContent = 'Start Session';
+        if (btnIcon) btnIcon.textContent = 'play_arrow';
+        updateFocusTimerDisplay();
+      };
+
+      function updateFocusTimerDisplay() {
+        const display = document.getElementById('focusTimeDisplay');
+        const circle = document.getElementById('focusTimerCircle');
+        const mins = Math.floor(focusSeconds / 60);
+        const secs = focusSeconds % 60;
+        if (display) {
+          display.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        }
+        if (circle) {
+          const totalCircumference = 283;
+          const offset = totalCircumference - (focusSeconds / initialFocusSeconds) * totalCircumference;
+          circle.setAttribute('stroke-dashoffset', offset);
+        }
+      }
+
+      // Close popover when clicking outside
+      document.addEventListener('click', function(e) {
+        const notifBtn = document.getElementById('btn-notifications');
+        const pop = document.getElementById('notifications-popover');
+        if (pop && notifBtn && !notifBtn.contains(e.target) && !pop.contains(e.target)) {
+          pop.classList.add('hidden');
+        }
+      });
+
+      // Initialize
+      loadTasks();
+      renderTasks();
+    })();
+  </script>
+</body>
+</html>

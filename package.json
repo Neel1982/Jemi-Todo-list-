@@ -1,0 +1,26 @@
+{
+  "name": "jemi-todo-list-",
+  "version": "1.0.0",
+  "description": "Todo list app",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite --host --port 5173",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Neel1982/Jemi-Todo-list-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Neel1982/Jemi-Todo-list-/issues"
+  },
+  "homepage": "https://github.com/Neel1982/Jemi-Todo-list-#readme",
+  "devDependencies": {
+    "vite": "^8.3.4"
+  }
+}
